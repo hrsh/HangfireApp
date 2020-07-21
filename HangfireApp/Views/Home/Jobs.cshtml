@@ -1,0 +1,42 @@
+﻿@model List<JobModel>
+
+<div class="row">
+    <div class="col-12">
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Invocation Data</td>
+                    <td>Arguments</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var t in Model)
+                {
+                    <tr>
+                        <td>@t.Id</td>
+                        <td>
+                            @{ 
+                                var x = t.InvocationData;
+                                var s = Newtonsoft.Json.JsonConvert.DeserializeObject<Root>(x);
+                            }
+                            <ul>
+                                <li>@s.t</li>
+                                <li>@s.Method</li>
+                                <li>
+                                    <ul>
+                                        @foreach (var y in s.Parameters)
+                                        {
+                                            <li>@y</li>
+                                        }
+                                    </ul>
+                                </li>
+                            </ul>
+                        </td>
+                        <td>@t.Arguments</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

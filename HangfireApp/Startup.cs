@@ -46,6 +46,7 @@ namespace HangfireApp
             services.AddHangfireServer();
 
             services.AddTransient<IMyEmailService, MyEmailService>();
+            services.AddTransient<IJobService, JobService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

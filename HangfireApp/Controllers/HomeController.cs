@@ -15,10 +15,12 @@ namespace HangfireApp.Controllers
     public class HomeController : Controller
     {
         private readonly IMyEmailService _emailService;
+        private readonly IJobService _jobService;
 
-        public HomeController(IMyEmailService emailService)
+        public HomeController(IMyEmailService emailService, IJobService jobService)
         {
             _emailService = emailService;
+            _jobService = jobService;
         }
 
         public IActionResult Index()
@@ -71,6 +73,13 @@ namespace HangfireApp.Controllers
             var dummyDays = int.Parse(time);
             RecurringJob.AddOrUpdate(() => _emailService.SendAsync(model, ct), Cron.DayInterval(dummyDays));
             return Ok();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Jobs(CancellationToken ct)
+        {
+            var t = await _jobService.GetAsync();
+            return View("Jobs", t);
         }
     }
 }
