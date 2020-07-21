@@ -1,0 +1,43 @@
+﻿@model EmailEntity
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div>
+    <h1 class="display-4">Hangfire Jobs TestApp</h1>
+    <hr />
+    <div class="row">
+        <div class="col-12">
+            <h3>Send email only 1 time immediately</h3>
+            <form asp-controller="Home" asp-action="SendEmailOnce">
+                <input type="text" class="form-control" asp-for="Subject" placeholder="Subject" />
+                <input type="text" class="form-control" asp-for="Body" placeholder="Body" />
+                <button type="submit" class="btn btn-primary">Send email NOW</button>
+            </form>
+            <hr />
+            <h3>Send email 1 time afterward</h3>
+            <form asp-controller="Home" asp-action="SendEmailAfterward">
+                <input type="text" class="form-control" asp-for="Subject" placeholder="Subject" />
+                <input type="text" class="form-control" asp-for="Body" placeholder="Body" />
+                <input type="number" name="time" id="time" class="form-control" placeholder="Dummy minutes" />
+                <button type="submit" class="btn btn-primary">Send email afterward</button>
+            </form>
+            <hr />
+            <h3>Send email 1 time every single day</h3>
+            <form asp-controller="Home" asp-action="SendEmailDaily">
+                <input type="text" class="form-control" asp-for="Subject" placeholder="Subject" />
+                <input type="text" class="form-control" asp-for="Body" placeholder="Body" />
+                <button type="submit" class="btn btn-primary">Send email daily</button>
+            </form>
+            <hr />
+            <h3>Send email 1 time every X day</h3>
+            <form asp-controller="Home" asp-action="SendEmailEveryXDay">
+                <input type="text" class="form-control" asp-for="Subject" placeholder="Subject" />
+                <input type="text" class="form-control" asp-for="Body" placeholder="Body" />
+                <input type="number" name="time" id="time" class="form-control" placeholder="Dummy days" />
+                <button type="submit" class="btn btn-primary">Send email every X day</button>
+            </form>
+        </div>
+    </div>
+</div>
